@@ -12,7 +12,8 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
     playerSelection = playerSelection.toLowerCase();
     if (playerSelection == computerSelection) {
         return "Draw! Try again"
@@ -27,13 +28,24 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playGame() {
+/** function playGame() {
     let playerSelection = prompt("What is your move?");
     for (let count = 0; count < 5; count += 1) {
         playerSelection = playerSelection.toLowerCase();
-        let a = playRound(playerSelection, getComputerChoice());
+        let a = playRound(playerSelection);
         console.log(a);
     }
 }
 
-playGame();
+playGame();**/
+
+function a(){
+    alert("Hello World")
+}
+
+const rock = document.querySelector("#otp1");
+if (rock) {
+    rock.addEventListener('click', () => {
+      console.log('You visited the link');
+    });
+  }
