@@ -1,3 +1,8 @@
+const container = document.querySelector("#container")
+
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3) + 1;
     
@@ -12,40 +17,67 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerSelection) {
-    const computerSelection = getComputerChoice();
+function getHumanChoice()
+{
+    let playerSelection = prompt("What is your move?");
+    return playerSelection;
+}
+
+function playRound(playerSelection,computerSelection) {
     playerSelection = playerSelection.toLowerCase();
+    div2.textContent = " ";
     if (playerSelection == computerSelection) {
-        return "Draw! Try again"
+        div1.textContent = "Draw! Try again";
     }
 
     else if ((playerSelection == "rock") && (computerSelection == "scissor") || ((playerSelection == "paper") && (computerSelection == "rock")) || ((playerSelection == "scissor") && (computerSelection == "rock"))) {
-        return "You win!" + " " + playerSelection + " " + "beats" + " " + computerSelection;
+        div1.textContent = "You win!" + " " + playerSelection + " " + "beats" + " " + computerSelection;
+        humanScore += 1;
     }
 
     else {
-        return "You lose!" + " " + computerSelection + " " + "beats" + " " + playerSelection;
+        div1.textContent = "You lose!" + " " + computerSelection + " " + "beats" + " " + playerSelection;
+        computerScore += 1;
+    }
+    if (humanScore == 5) {
+        div2.textContent = "You Win!";
+        humanScore = 0;
+        computerScore = 0
+     }
+    if (computerScore == 5) {
+        div2.textContent = "You Lose!"
+        humanScore = 0;
+        computerScore = 0;
     }
 }
 
 /** function playGame() {
-    let playerSelection = prompt("What is your move?");
     for (let count = 0; count < 5; count += 1) {
-        playerSelection = playerSelection.toLowerCase();
-        let a = playRound(playerSelection);
-        console.log(a);
+        playRound(getHumanChoice(),getComputerChoice());
     }
 }
+**/
 
-playGame();**/
+const rck = document.querySelector("#r1");
+rck.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+});
+const ppr = document.querySelector("#p1");
+ppr.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+});
+const scr = document.querySelector("#s1");
+scr.addEventListener("click", () => {
+    playRound("scissor", getComputerChoice())
+});
 
-function a(){
-    alert("Hello World")
-}
+const div1 = document.createElement("div");
+div1.classList.add("div1");
+container.appendChild(div1);
 
-const rock = document.querySelector("#otp1");
-if (rock) {
-    rock.addEventListener('click', () => {
-      console.log('You visited the link');
-    });
-  }
+const div2 = document.createElement("div");
+div2.classList.add("div2");
+container.appendChild(div2);
+
+
+
